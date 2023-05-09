@@ -1,1 +1,15 @@
-
+# Config Version 2.0...
+command: flyticket
+command-description: "FlyTicket Menu"
+content: "§6You can buy a fly permission from this menu. You can fly for the duration you purchased. When the time runs out, your fly ticket will be expired.\n"
+Priceinfo: "§bPrice per minute: §f{price}\n"
+Money: "§aYour money: §2{money} \n"
+Price: 2000
+FormTitle: FlyTicketMenu
+Min: 1
+Max: 60
+ItemName: "§aFly Ticket"
+message: "§2You have purchased a §a{minute}§2 minute fly ticket for §2{total}§a!\n"
+usage-message: "§aYou have successfully used your FlyTicket!"
+fly-message: "§7Fly time: §e{minute}m {second}s"
+warning-title: "§cYour fly ticket will expire in §f{second}§c seconds!"
