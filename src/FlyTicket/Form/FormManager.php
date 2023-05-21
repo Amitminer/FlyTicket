@@ -25,10 +25,7 @@ class FormManager {
         $minute = $data[1];
         $second = $minute * 60;
         $price = $minute * Main::$config->get("Price");
-       # var_dump($price);
-       # var_dump($minute);
         $message = str_replace(["{total}", "{minute}"], [$price, $minute], Main::$config->get("message"));
-      # var_dump($message);
         $item_name = Main::$config->get("ItemName");
         $item = ItemFactory::getInstance()->get(ItemIds::FEATHER, 0, 1)->setCustomName("§a" . $item_name)->addEnchantment(new EnchantmentInstance(EnchantmentIdMap::getInstance()->fromId(0), 10));
         $item->getNamedTag()->setInt("second", $second);
@@ -36,7 +33,6 @@ class FormManager {
         
         $lore = ["§b" . $minute . " §cminute(s) fly ticket"];
         $item->setLore($lore);
-        var_dump($lore);
         $priceToSend = $price;
         $minuteToSend = $minute;
 
