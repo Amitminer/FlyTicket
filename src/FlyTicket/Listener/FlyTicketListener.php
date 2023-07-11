@@ -3,7 +3,6 @@
 namespace FlyTicket\Listener;
 
 use FlyTicket\Main;
-use FlyTicket\Manager\FlyTicketManager;
 use FlyTicket\Task\FlyTicketTask;
 use pocketmine\player\Player;
 use pocketmine\event\Listener;
