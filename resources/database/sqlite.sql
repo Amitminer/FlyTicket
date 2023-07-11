@@ -1,4 +1,4 @@
--- #!mysql
+-- #!sqlite
 
 -- #{ flyticket
 -- #{ createTable
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS flyticket (
 
 -- # { addPlayer
 -- # :playerName string
-INSERT IGNORE INTO flyticket (playerName) VALUES (:playerName);
+INSERT OR IGNORE INTO flyticket (playerName) VALUES (:playerName);
 -- # }
 
 -- # { removePlayer
