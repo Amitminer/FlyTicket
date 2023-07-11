@@ -3,20 +3,23 @@
 namespace FlyTicket\Task;
 
 use FlyTicket\Main;
-use FlyTicket\Manager\FlyTicketManager;
+use FlyTicket\Manager\DatabaseManager;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
 use pocketmine\Server;
+use FlyTicket\Manager\MessageManager;
 
 class FlyTicketTask extends Task
 {
     public $time;
     public $player;
+    private $databaseManager;
 
     public function __construct(Player $player, int $time){
         $this->time = $time;
         $this->player = $player;
+        $this->databaseManager = new DatabaseManager();
     }
     public function onRun(): void
     {
@@ -39,12 +42,12 @@ class FlyTicketTask extends Task
                 } else {
                     $format = "§f" . $min . " §bminutes §f" . $second . " §bsecond";
                 }
-                if (!$player->getAllowFlight()) {
-                    $player->setAllowFlight(true);
-                }
-                $cfgformat = str_replace(["{minute}", "{second}"], [$min, $second], Main::$config->get("fly-message"));
+              //  if (!$player->getAllowFlight()) {
+       //             $player->setAllowFlight(true);
+      //          }
+                $cfgformat = str_replace(["{minute}", "{second}"], [$min, $second], MessageManager::flytimemsg());
                 $player->sendActionBarMessage($cfgformat);
-                $second = str_replace("{second}", $this->time, Main::$config->get("warning-Title"));
+                $second = str_replace("{second}", $this->time, MessageManager::warning());
                 $second_array = [60, 10, 5, 4, 3, 2, 1];
                 if (in_array($this->time, $second_array)) {
                     $player->sendTitle($second);
@@ -53,10 +56,8 @@ class FlyTicketTask extends Task
                 if ($this->time === 0) {
                     $player->setAllowFlight(false);
                     if ($player->isFlying()) $player->setFlying(false);
-                    unset(FlyTicketManager::$array[$player->getName()]);
-                    $player->sendTitle("§cFly Ticket expired.");
-               #     $format = $player->getDisplayName();
-                 #   $player->setNameTag($format);
+                    $this->databaseManager->removePlayer($player->getName());
+                    $player->sendTitle(MessageManager::OnExpire());
                     $player->teleport($player->getWorld()->getSafeSpawn());
                     $this->getHandler()->cancel();
                 }
