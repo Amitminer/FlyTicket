@@ -7,7 +7,6 @@ use FlyTicket\Listener\FlyTicketListener;
 use FlyTicket\Manager\DatabaseManager;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
-use pocketmine\utils\Filesystem;
 
 class Main extends PluginBase
 {
@@ -15,6 +14,11 @@ class Main extends PluginBase
     private $config;
     private $databaseManager;
 
+    /**
+     * Get the instance of the main class.
+     *
+     * @return Main The instance of the main class.
+     */
     public static function getInstance(): Main
     { 
         return self::$main;
@@ -33,9 +37,9 @@ class Main extends PluginBase
         $this->saveDefaultConfig();
         $this->databaseManager = new DatabaseManager();
         $this->databaseManager->getDatabase(true);
-        $command_name = $this->config->get("command");
+        $commandName = $this->config->get("command");
         $this->getLogger()->info("FlyTicket Enabled!");
-        $this->getServer()->getCommandMap()->register($command_name, new FlyTicketCommand());
+        $this->getServer()->getCommandMap()->register($commandName, new FlyTicketCommand());
         $this->getServer()->getPluginManager()->registerEvents(new FlyTicketListener(), $this);
     }
 
@@ -45,11 +49,16 @@ class Main extends PluginBase
         $this->deleteOldDataFile();
     }
     
-    public function deleteOldDataFile(): void {
-        $dataFilePath = $this->getDataFolder() . 'flyticketData.db' ?? null;
+    /**
+     * Delete the old data file (flyticketData.db) from the plugin_data directory.
+     */
+    public function deleteOldDataFile(): void
+    {
+        $dataFilePath = $this->getDataFolder() . 'flyticketData.db';
+        
         if (file_exists($dataFilePath)) {
             unlink($dataFilePath);
-            $this->getLogger()->info("§aflyticketData deleted");
-        } else {}
+            $this->getLogger()->info("flyticketData.db deleted");
+        }
     }
 }
