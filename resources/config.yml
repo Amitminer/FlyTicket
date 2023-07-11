@@ -1,15 +1,41 @@
-# Config Version 2.0...
 command: flyticket
 command-description: "FlyTicket Menu"
 content: "§6You can buy a fly permission from this menu. You can fly for the duration you purchased. When the time runs out, your fly ticket will be expired.\n"
 Priceinfo: "§bPrice per minute: §f{price}\n"
 Money: "§aYour money: §2{money} \n"
-Price: 2000
+Price: 2500
 FormTitle: FlyTicketMenu
 Min: 1
 Max: 60
 ItemName: "§aFly Ticket"
-message: "§2You have purchased a §a{minute}§2 minute fly ticket for §2{total}§a!\n"
+ItemID: "feather"
+purchase-message: "§2You have purchased a §a{minute}§2 minute fly ticket for §2{total}§a!\n"
 usage-message: "§aYou have successfully used your FlyTicket!"
-fly-message: "§7Fly time: §e{minute}m {second}s"
+fly-time-message: "§7Fly time: §e{minute}m {second}s"
+fly-usage: "§ado /fly to use fly!"
+already-active: "§cYou already have an active fly ticket."
 warning-title: "§cYour fly ticket will expire in §f{second}§c seconds!"
+inv-full: "§cYour Inventory is full"
+no-enough-money: "§cYou don't have enough money!"
+no-console: "§cPlease Use this command in game!"
+on-expire: "§cFly Ticket expired."
+
+database:
+  # The database type. "sqlite" and "mysql" are supported.
+  type: sqlite
+
+  # Edit these settings only if you choose "sqlite".
+  sqlite:
+    # The file name of the database in the plugin data folder.
+    # You can also put an absolute path here.
+    file: flyticketData.db
+  # Edit these settings only if you choose "mysql".
+  mysql:
+    host: 127.0.0.1
+    # Avoid using the "root" user for security reasons.
+    username: root
+    password: ""
+    schema: your_schema
+  # The maximum number of simultaneous SQL queries
+  # Recommended: 1 for sqlite, 2 for MySQL. You may want to further increase this value if your MySQL connection is very slow.
+  worker-limit: 1
