@@ -1,7 +1,7 @@
 name: FlyTicket
 main: FlyTicket\Main
-api: 4.0.0
-version: 2
+api: 5.0.0
+version: 3
 author: 
 - ayd4ndemirci
 - AmitxD
