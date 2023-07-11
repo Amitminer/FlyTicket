@@ -4,7 +4,6 @@ namespace FlyTicket\Command;
 
 use FlyTicket\Manager\FormManager;
 use FlyTicket\Main;
-use FlyTicket\Manager\FlyTicketManager;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
