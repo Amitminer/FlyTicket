@@ -14,13 +14,22 @@ class FlyTicketCommand extends Command
 
     public function __construct() {
         $config = Main:: getInstance()->getConfig();
+        /** @param string $command_name The command name */
         $command_name = $config->get("command");
+        /** @param string $command_description The command description */
         $command_description = $config->get("command-description");
         parent::__construct($command_name, $command_description, "/".$command_name);
         $this->setPermission("flyticket.command.use");
     }
+
+    /**
+     * @param CommandSender $player The command sender
+     * @param string $commandLabel The command label
+     * @param array $args The command arguments
+     */
     public function execute(CommandSender $player, string $commandLabel, array $args) {
         if ($player instanceof Player) {
+            /** @var Player $player The player who executed the command */
             $formM = new FormManager();
             $formM->FlyTicketForm($player);
         } else {
