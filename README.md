@@ -32,10 +32,12 @@ You can customize the plugin by editing the `config.yml` file located in the `pl
 - `flyticket.use`: Allows the player to use the `/flyticket` command and purchase a fly ticket.
 
 # TODO LIST
-[ ] USE RankSystem api
-[ ] SUPPORT CUSTOM ITEMS AS FLYTICKET.
-[ ] use timer api to manage time!
-[ ] CREATE MessageManager
+- [ ] UPDATING TO PM5
+- [ ] USE RankSystem api
+- [ ] SUPPORT CUSTOM ITEMS AS FLYTICKET.
+- [ ] use timer api to manage time!
+- [ ] CREATE MessageManager
+
 ## Support
 
 If you need help with this plugin or want to report a bug, please create a new issue on the GitHub repository.
