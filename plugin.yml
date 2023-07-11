@@ -5,4 +5,7 @@ version: 3
 author: 
 - ayd4ndemirci
 - AmitxD
-website: https://github.com/Amitminer/FlyTicket/
+permissions:
+  flyticket.command.use:
+    description: "Allows the user to run open Flyticket"
+    default: true
